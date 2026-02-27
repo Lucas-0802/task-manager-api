@@ -9,7 +9,7 @@ API RESTful para gerenciar tarefas com Laravel, Docker e testes automatizados.
 ### 1️⃣ Clonar & Entrar
 
 ```bash
-git clone https://github.com/seu-usuario/task-manager-api.git
+git clone https://github.com/Lucas-0802/task-manager-api.git
 cd task-manager-api
 ```
 
