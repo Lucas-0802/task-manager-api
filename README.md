@@ -25,7 +25,7 @@ cp .env.example .env
 docker compose up -d
 ```
 
-**Pronto!** As migrations já rodaram automaticamente. A API está em `http://localhost/api/tasks`
+**Pronto!** As migrations já rodaram automaticamente. A API está em `http://localhost:80/api/tasks`
 
 ---
 
