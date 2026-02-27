@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Repositories\Contracts;
+
+interface TaskRepositoryInterface
+{
+    public function all();
+    public function find(string $id);
+    public function create(array $data);
+    public function update(string $id, array $data);
+}
