@@ -19,10 +19,12 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
+            - './docker-entrypoint.sh:/docker-entrypoint.sh'
         networks:
             - sail
         depends_on:
             - mysql
+        entrypoint: /docker-entrypoint.sh
     mysql:
         image: 'mysql:8.4'
         ports:

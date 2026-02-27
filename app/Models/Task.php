@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use HasUuids;
+  use HasUuids, HasFactory;
 
-    protected $primaryKey = 'id';
-    public $incrementing = false;
-    protected $keyType = 'string';
+  protected $primaryKey = 'id';
+  public $incrementing = false;
+  protected $keyType = 'string';
 
-    protected $fillable = ['title', 'description', 'completed'];
+  protected $fillable = ['title', 'description', 'completed'];
 
-    protected $casts = [
-        'completed' => 'boolean',
-    ];
+  protected $casts = [
+    'completed' => 'boolean',
+  ];
 }
