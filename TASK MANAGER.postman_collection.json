@@ -1,26 +1,13 @@
 {
     "info": {
-        "_postman_id": "221a2352-344a-4311-bff7-c4b51a12e9c2",
-        "name": "Task Manager API",
+        "_postman_id": "08ec0c12-55e1-4c45-b190-2e43ddcaab59",
+        "name": "TASK MANAGER",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "_exporter_id": "25382323"
     },
     "item": [
         {
             "name": "List All Tasks",
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "{{baseUrl}}/tasks",
-                    "host": ["{{baseUrl}}"],
-                    "path": ["tasks"]
-                }
-            },
-            "response": []
-        },
-        {
-            "name": "Get Task By ID",
             "request": {
                 "method": "GET",
                 "header": [
@@ -31,9 +18,28 @@
                     }
                 ],
                 "url": {
-                    "raw": "{{baseUrl}}/tasks/019c9f91-ad91-7338-9ed6-e8f66041d958",
-                    "host": ["{{baseUrl}}"],
-                    "path": ["tasks", "019c9f91-ad91-7338-9ed6-e8f66041d958"]
+                    "raw": "{{base_url}}/tasks",
+                    "host": ["{{base_url}}"],
+                    "path": ["tasks"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Task by ID",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/tasks/{task_id}",
+                    "host": ["{{base_url}}"],
+                    "path": ["tasks", "{task_id}"]
                 }
             },
             "response": []
@@ -59,8 +65,8 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/tasks",
-                    "host": ["{{baseUrl}}"],
+                    "raw": "{{base_url}}/tasks",
+                    "host": ["{{base_url}}"],
                     "path": ["tasks"]
                 }
             },
@@ -79,7 +85,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n    \"completed\": true\n}",
+                    "raw": "{   \n    \"title\": \"Atualizar tarefa\",\n    \"description\": \"Atualiza a descrição da tarefa\",\n    \"completed\" : true\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -87,9 +93,9 @@
                     }
                 },
                 "url": {
-                    "raw": "{{baseUrl}}/tasks/019c9f91-ad91-7338-9ed6-e8f66041d958",
-                    "host": ["{{baseUrl}}"],
-                    "path": ["tasks", "019c9f91-ad91-7338-9ed6-e8f66041d958"]
+                    "raw": "{{base_url}}/tasks/{task_id}",
+                    "host": ["{{base_url}}"],
+                    "path": ["tasks", "{task_id}"]
                 }
             },
             "response": []
@@ -106,9 +112,9 @@
                     }
                 ],
                 "url": {
-                    "raw": "{{baseUrl}}/tasks/019c9f91-ad91-7338-9ed6-e8f66041d958",
-                    "host": ["{{baseUrl}}"],
-                    "path": ["tasks", "019c9f91-ad91-7338-9ed6-e8f66041d958"]
+                    "raw": "{{base_url}}/tasks/{task_id}",
+                    "host": ["{{base_url}}"],
+                    "path": ["tasks", "{task_id}"]
                 }
             },
             "response": []
@@ -136,8 +142,8 @@
     ],
     "variable": [
         {
-            "key": "baseUrl",
-            "value": ""
+            "key": "base_url",
+            "value": "http://localhost:80/api"
         }
     ]
 }

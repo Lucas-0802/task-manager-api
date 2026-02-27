@@ -53,15 +53,15 @@ curl -X POST http://localhost/api/tasks \
 
 ```bash
 # Todos os testes
-docker compose exec laravel.test ./vendor/bin/phpunit
+docker compose exec laravel.test ./vendor/bin/phpunit --testdox
 
 # Apenas testes unitários
-docker compose exec laravel.test ./vendor/bin/phpunit tests/Unit/
+docker compose exec laravel.test ./vendor/bin/phpunit tests/Unit/ --testdox
 
 # Apenas integração
-docker compose exec laravel.test ./vendor/bin/phpunit tests/Integration/
+docker compose exec laravel.test ./vendor/bin/phpunit tests/Integration/ --testdox
 
 # Apenas E2E
-docker compose exec laravel.test ./vendor/bin/phpunit tests/Feature/
+docker compose exec laravel.test ./vendor/bin/phpunit tests/Feature/ --testdox
 ```
 

@@ -27,6 +27,14 @@ return Application::configure(basePath: dirname(__DIR__))
       }
     });
 
+    $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException $e, $request) {
+      if ($request->is('api/*')) {
+        return response()->json([
+          'message' => "Method not allowed"
+        ], 405);
+      }
+    });
+
      $exceptions->render(function (\Illuminate\Validation\ValidationException $e, $request) {
       if ($request->is('api/*')) {
         return response()->json([
@@ -38,7 +46,6 @@ return Application::configure(basePath: dirname(__DIR__))
     
 
     $exceptions->render(function (\Throwable $th, $request) {
-      dd($th);
         return response()->json([
           'message' => "An internal server error occurred - {$th->getMessage()}"
         ], 500);
