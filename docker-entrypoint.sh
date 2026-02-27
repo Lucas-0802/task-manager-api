@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 while ! mysqladmin ping -h"mysql" -u"${DB_USERNAME}" -p"${DB_PASSWORD}" --silent; do
