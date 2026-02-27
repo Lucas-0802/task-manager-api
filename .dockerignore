@@ -1,0 +1,17 @@
+.git
+.gitignore
+.gitattributes
+.env
+node_modules
+tests
+.editorconfig
+.dockerignore
+docker-compose.yml
+compose.yaml
+Dockerfile
+README.md
+DOCKER_SETUP.md
+*.md
+.vscode
+.idea
+npm-debug.log
