@@ -25,7 +25,7 @@ cp .env.example .env
 docker compose up -d
 ```
 
-**Pronto!** As migrations já rodaram automaticamente. A API está em `http://localhost:80/api/tasks`
+**Pronto!** As migrations já rodaram automaticamente. A API está em <a href="http://localhost:80" target="_blank">`http://localhost:80`</a> clique para baixar o JSON com a collection.
 
 ---
 
@@ -42,7 +42,7 @@ docker compose up -d
 ### Exemplo: Criar Tarefa
 
 ```bash
-curl -X POST http://localhost/api/tasks \
+curl -X POST <a href="http://localhost/api/tasks" target="_blank">http://localhost/api/tasks</a> \
   -H "Content-Type: application/json" \
   -d '{"title":"Minha tarefa","description":"Descrição"}'
 ```
@@ -64,4 +64,3 @@ docker compose exec laravel.test ./vendor/bin/phpunit tests/Integration/ --testd
 # Apenas E2E
 docker compose exec laravel.test ./vendor/bin/phpunit tests/Feature/ --testdox
 ```
-
