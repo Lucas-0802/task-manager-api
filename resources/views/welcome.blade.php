@@ -95,7 +95,7 @@
         </div>
 
         <div>
-          <a href="{{ route('postman.download') }}"
+          <a href="{{ route('postman.download') }}" target="_blank"
             class="inline-block w-full text-center bg-blue-600 dark:bg-blue-500 text-white dark:text-white hover:bg-blue-700 dark:hover:bg-blue-600 px-6 py-3 rounded-lg font-semibold transition-colors">
             Baixar Collection (JSON)
           </a>
