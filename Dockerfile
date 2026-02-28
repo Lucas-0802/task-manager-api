@@ -16,11 +16,9 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN rm -rf vendor
-
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
-ENTRYPOINT [ "sh", "-c", "test -d vendor || composer install --no-interaction --prefer-dist && php-fpm" ]
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
+  chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 EXPOSE 9000
+
+ENTRYPOINT [ "sh", "-c", "test -d vendor || composer install --no-interaction --prefer-dist; php artisan key:generate --force; php artisan migrate --force; php-fpm" ]

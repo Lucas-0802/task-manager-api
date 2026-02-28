@@ -21,29 +21,6 @@ services:
     networks:
       - app-network
 
-  setup:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: task-manager-setup
-    working_dir: /var/www/html
-    environment:
-      - DB_CONNECTION=${DB_CONNECTION:-mysql}
-      - DB_HOST=mysql
-      - DB_DATABASE=${DB_DATABASE:-laravel}
-      - DB_USERNAME=${DB_USERNAME:-laravel}
-      - DB_PASSWORD=${DB_PASSWORD:-root}
-      - APP_DEBUG=${APP_DEBUG:-true}
-      - APP_ENV=${APP_ENV:-local}
-    command: sh -c "php artisan key:generate --force && php artisan migrate --force"
-    volumes:
-      - .:/var/www/html
-    depends_on:
-      mysql:
-        condition: service_healthy
-    networks:
-      - app-network
-
   nginx:
     image: nginx:alpine
     container_name: task-manager-nginx
@@ -54,7 +31,6 @@ services:
       - .:/var/www/html
     depends_on:
       - laravel.test
-      - setup
     networks:
       - app-network
 
