@@ -25,7 +25,7 @@ class TaskServiceIntegrationTest extends TestCase
   {
     Task::factory()->count(3)->create();
 
-    $tasks = $this->service->getAllTasks();
+    $tasks = $this->service->getAllTasks(15);
 
     $this->assertCount(3, $tasks);
   }
@@ -111,7 +111,7 @@ class TaskServiceIntegrationTest extends TestCase
     sleep(1); // Ensure different timestamps
     $task2 = Task::factory()->create(['title' => 'Task 2']);
 
-    $tasks = $this->service->getAllTasks();
+    $tasks = $this->service->getAllTasks(15);
 
     $this->assertEquals($task2->id, $tasks->first()->id);
     $this->assertEquals($task1->id, $tasks->last()->id);

@@ -31,10 +31,11 @@ class TaskServiceTest extends MockeryTestCase
 
     $this->repository
       ->shouldReceive('all')
+      ->with(15)
       ->once()
       ->andReturn($tasks);
 
-    $result = $this->service->getAllTasks();
+    $result = $this->service->getAllTasks(15);
 
     $this->assertEquals($tasks, $result);
   }

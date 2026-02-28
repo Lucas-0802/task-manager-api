@@ -23,6 +23,8 @@ class TaskControllerTest extends TestCase
         'data' => [
           '*' => ['id', 'title', 'description', 'completed', 'created_at', 'updated_at'],
         ],
+        'links' => ['first', 'last', 'prev', 'next'],
+        'meta' => ['current_page', 'from', 'last_page', 'path', 'per_page', 'to', 'total'],
       ])
       ->assertJsonCount(3, 'data');
   }
@@ -33,8 +35,45 @@ class TaskControllerTest extends TestCase
     $response = $this->getJson('/api/tasks');
 
     $response->assertStatus(200)
-      ->assertJson(['data' => []])
+      ->assertJsonStructure([
+        'data' => [],
+        'links' => ['first', 'last', 'prev', 'next'],
+        'meta' => ['current_page', 'from', 'last_page', 'path', 'per_page', 'to', 'total'],
+      ])
       ->assertJsonCount(0, 'data');
+  }
+
+  #[Test]
+  public function index_respects_per_page_parameter()
+  {
+    Task::factory()->count(25)->create();
+
+    $response = $this->getJson('/api/tasks?per_page=10');
+
+    $response->assertStatus(200)
+      ->assertJsonCount(10, 'data')
+      ->assertJson([
+        'meta' => [
+          'per_page' => 10,
+          'total' => 25,
+          'last_page' => 3,
+        ],
+      ]);
+  }
+
+  #[Test]
+  public function index_uses_default_per_page_when_not_specified()
+  {
+    Task::factory()->count(20)->create();
+
+    $response = $this->getJson('/api/tasks');
+
+    $response->assertStatus(200)
+      ->assertJson([
+        'meta' => [
+          'per_page' => 15,
+        ],
+      ]);
   }
 
   #[Test]
