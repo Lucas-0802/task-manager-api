@@ -16,9 +16,10 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
-  chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html && \
+  chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache && \
+  chmod -R 755 /var/www/html
 
 EXPOSE 9000
 
-ENTRYPOINT [ "sh", "-c", "test -d vendor || composer install --no-interaction --prefer-dist; php artisan key:generate --force; php artisan migrate --force; php-fpm" ]
+ENTRYPOINT [ "sh", "-c", "chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache; mkdir -p /var/www/html/storage/logs; chmod -R 777 /var/www/html/storage/logs; test -d vendor || composer install --no-interaction --prefer-dist; php artisan key:generate --force; php artisan migrate --force; php-fpm" ]
