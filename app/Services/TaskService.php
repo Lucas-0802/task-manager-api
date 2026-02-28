@@ -8,9 +8,9 @@ class TaskService
 {
   public function __construct(protected TaskRepositoryInterface $repository) {}
 
-  public function getAllTasks()
+  public function getAllTasks(int $perPage)
   {
-    return $this->repository->all();
+    return $this->repository->all($perPage);
   }
 
   public function getTaskById(string $id)

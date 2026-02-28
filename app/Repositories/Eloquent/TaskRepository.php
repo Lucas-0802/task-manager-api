@@ -7,28 +7,35 @@ use App\Repositories\Contracts\TaskRepositoryInterface;
 
 class TaskRepository implements TaskRepositoryInterface
 {
-    public function __construct(protected Task $model) {}
+  public function __construct(protected Task $model) {}
 
-    public function all() {
-        return $this->model->all()->sortByDesc('created_at');
-    }
+  public function all(int $perPage)
+  {
+    return $this->model
+      ->orderByDesc('created_at')
+      ->paginate($perPage);
+  }
 
-    public function find(string $id) {
-        return $this->model->findOrFail($id);
-    }
+  public function find(string $id)
+  {
+    return $this->model->findOrFail($id);
+  }
 
-    public function create(array $data) {
-        return $this->model->create($data);
-    }
+  public function create(array $data)
+  {
+    return $this->model->create($data);
+  }
 
-    public function update(string $id, array $data) {
-        $task = $this->find($id);
-        $task->update($data);
-        return $task;
-    }
+  public function update(string $id, array $data)
+  {
+    $task = $this->find($id);
+    $task->update($data);
+    return $task;
+  }
 
-    public function delete(string $id) {
-        $task = $this->find($id);
-        return $task->delete();
-    }
+  public function delete(string $id)
+  {
+    $task = $this->find($id);
+    return $task->delete();
+  }
 }

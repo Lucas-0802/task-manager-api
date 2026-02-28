@@ -7,14 +7,16 @@ use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\TaskUpdateRequest;
 use App\Http\Resources\TaskResource;
 use App\Services\TaskService;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
   public function __construct(protected TaskService $service) {}
 
-  public function index()
+  public function index(Request $request)
   {
-    return TaskResource::collection($this->service->getAllTasks());
+    $perPage = $request->query('per_page', 15);
+    return TaskResource::collection($this->service->getAllTasks($perPage));
   }
 
   public function show(string $id)
